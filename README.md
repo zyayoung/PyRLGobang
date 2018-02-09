@@ -9,5 +9,5 @@
 ## usage
 
 ```
-python main.py [player|ai] [player|ai]
+python3 main.py [player|ai] [player|ai]
 ```
