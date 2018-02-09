@@ -10,7 +10,7 @@ from gobang.ai import AIManager
 
 class Chess_Board_Canvas(tkinter.Canvas):
     # 棋盘绘图板,继承自Tkinter.Canvas类
-    def __init__(self, master=None, height=0, width=0, player1='ai', player2='ai'):
+    def __init__(self, master=None, height=0, width=0, player1='player', player2='ai'):
         '''
         棋盘类初始化
         :param master: 画到那个对象
@@ -123,13 +123,16 @@ class Chess_Board_Canvas(tkinter.Canvas):
 
 
 class ChessBoardFrame(tkinter.Frame):
-    def __init__(self, master=None):
+    def __init__(self, master=None, player1='player', player2='ai'):
         tkinter.Frame.__init__(self, master)
+        self.player1 = player1
+        self.player2 = player2
         self.create_widgets()
 
     def create_widgets(self):
         self.chess_board_label_frame = tkinter.LabelFrame(self, text="Chess Board", padx=5, pady=5)
-        self.chess_board_canvas = Chess_Board_Canvas(self.chess_board_label_frame, height=520, width=480)
+        self.chess_board_canvas = Chess_Board_Canvas(self.chess_board_label_frame, height=520, width=480,
+                                                     player1=self.player1, player2=self.player2)
 
         self.chess_board_canvas.bind('<Button-1>', self.chess_board_canvas.click1)
         self.button = tkinter.Button(self, text='重新开始', command=(self.chess_board_canvas.restart))
